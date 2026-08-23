@@ -1,0 +1,11 @@
+{
+  "description": "Template for the customer-support AgentCore Harness test suite. Copy to harness_tests.json.",
+  "harnessArnSource": "agentcore_config.json",
+  "tests": [
+    {
+      "id": "<unique-id>",
+      "prompt": "<customer-message>",
+      "expected": "<description of expected response intent>"
+    }
+  ]
+}

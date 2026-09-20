@@ -37,7 +37,7 @@ CONFIG_FILE = Path(__file__).parent / "agentcore_config.json"
 DEFAULT_TOOL_STACK = "bug-report-tool-stack"
 DEFAULT_REGION = "us-east-1"
 DEFAULT_GATEWAY_NAME = "customer-support-gateway"
-DEFAULT_TARGET_NAME = "create-bug-report"
+DEFAULT_TARGET_NAME = "createbugreporttool"
 
 
 def get_stack_outputs(cfn_client, stack_name):

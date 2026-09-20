@@ -89,6 +89,11 @@ than ~5 minutes.
 | `run_all_inprocess.py` | One-process driver. (NOT tracked in git.) |
 | `EVALUATION_NOTES.md` | Rubric evidence + troubleshooting matrix. |
 | `AUTHORS.md` | Attribution. |
+| `chat_transcripts.txt` | `chat.py` transcripts: bug report (with the `[tool call]` line), a covered FAQ question, an uncovered FAQ question, and an out-of-scope request. |
+| `dynamodb_screenshot.png` | Single-item view of a bug ticket the chatbot filed. |
+| `dynamodb_screenshot_table_view.png` | Full `bug-report-tool-stack-bug-reports` table view, all created tickets. |
+| `eval_results.jsonl` | Per-record `Builtin.Correctness` scores + judge explanations from the completed Bedrock Evaluations job. |
+| `WRITTEN_OBSERVATIONS.md` | Score breakdown and root-cause analysis of the two failing test cases, with the follow-up prompt changes. |
 
 `agentcore_config.json`, `run_all.ps1`, `output_eval_dataset.jsonl`,
 `chat_results.json`, `run_all_inprocess.py`, `venv/`, `__pycache__/` are
@@ -99,9 +104,9 @@ all gitignored.
 | Rubric | Lives in |
 |---|---|
 | Classification + routing | `system_prompt.txt` + `chat.py` + 13-test suite |
-| Bug-report path | `system_prompt.txt` Category A + `create_bug_report.py` + DynamoDB scan |
-| FAQ + Other-request paths | `system_prompt.txt` Category B/C + FAQ embedded + FAQ tests |
-| Testing + evaluation | `harness_tests.json` + `generate_eval_dataset.py` + `run_all_inprocess.py` step 7 |
+| Bug-report path | `system_prompt.txt` Category A + `create_bug_report.py` + `chat_transcripts.txt` + `dynamodb_screenshot.png` / `dynamodb_screenshot_table_view.png` |
+| FAQ + Other-request paths | `system_prompt.txt` Category B/C + FAQ embedded + `chat_transcripts.txt` |
+| Testing + evaluation | `harness_tests.json` + `output_eval_dataset.jsonl` + `eval_results.jsonl` + `WRITTEN_OBSERVATIONS.md` |
 
 See `EVALUATION_NOTES.md` for the detailed walk-through.
 

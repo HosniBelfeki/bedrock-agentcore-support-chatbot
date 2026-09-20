@@ -25,12 +25,18 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 import time
 import uuid
 from pathlib import Path
 
 import boto3
+
+
+def sanitize_model_identifier(model_id):
+    """Bedrock Evaluations modelIdentifier must match [a-zA-Z0-9]([a-zA-Z0-9._-]){0,255} - no colons."""
+    return re.sub(r"[^a-zA-Z0-9._-]", "-", model_id)
 
 
 CONFIG_FILE = Path(__file__).parent / "agentcore_config.json"
@@ -51,39 +57,27 @@ def load_config(path):
 
 
 def collect_response_text(stream):
-    """Walk the AgentCore stream; accumulate final text + tool call log."""
+    """Consume the AgentCore event stream; accumulate final text + tool call log."""
     text = []
     tool_calls = []
     errors = []
 
-    def walk(obj, depth=0):
-        if depth > 6:
-            return
-        if isinstance(obj, dict):
-            # delta with text or toolUse
-            if "contentBlockDelta" in obj:
-                delta = obj["contentBlockDelta"].get("delta") or {}
-                if "text" in delta:
-                    text.append(delta["text"])
-                if "toolUse" in delta:
-                    tu = delta["toolUse"]
-                    tool_calls.append({"name": tu.get("name"), "input": tu.get("input", {})})
-            if "contentBlockStart" in obj:
-                start = obj["contentBlockStart"].get("start") or {}
-                if "toolUse" in start:
-                    tu = start["toolUse"]
-                    tool_calls.append({"name": tu.get("name"), "input": tu.get("input", {})})
-            if "runtimeClientError" in obj:
-                errors.append(obj["runtimeClientError"].get("message") or "client error")
-            if "messageStop" in obj:
-                pass
-            for v in obj.values():
-                walk(v, depth + 1)
-        elif isinstance(obj, list):
-            for v in obj:
-                walk(v, depth + 1)
+    for event in stream:
+        if "contentBlockDelta" in event:
+            delta = event["contentBlockDelta"].get("delta") or {}
+            if "text" in delta:
+                text.append(delta["text"])
+            if "toolUse" in delta:
+                tu = delta["toolUse"]
+                tool_calls.append({"name": tu.get("name"), "input": tu.get("input", {})})
+        if "contentBlockStart" in event:
+            start = event["contentBlockStart"].get("start") or {}
+            if "toolUse" in start:
+                tu = start["toolUse"]
+                tool_calls.append({"name": tu.get("name"), "input": tu.get("input", {})})
+        if "runtimeClientError" in event:
+            errors.append(event["runtimeClientError"].get("message") or "client error")
 
-    walk(stream)
     return "".join(text), tool_calls, errors
 
 
@@ -149,7 +143,7 @@ def main():
                 "prompt": prompt,
                 "referenceResponse": expected,
                 "modelResponses": [
-                    {"response": response_text, "modelIdentifier": model_id}
+                    {"response": response_text, "modelIdentifier": sanitize_model_identifier(model_id)}
                 ],
             }
             f.write(json.dumps(record, ensure_ascii=False) + "\n")

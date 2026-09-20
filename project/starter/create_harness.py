@@ -41,8 +41,14 @@ def load_config(path):
 def find_harness_by_name(control, name):
     paginator = control.get_paginator("list_harnesses")
     for page in paginator.paginate():
-        for item in page.get("items", []) or page.get("harnessSummaries", []) or []:
-            if item.get("name") == name:
+        items = (
+            page.get("harnesses")
+            or page.get("items")
+            or page.get("harnessSummaries")
+            or []
+        )
+        for item in items:
+            if item.get("harnessName", item.get("name")) == name:
                 return item.get("harnessId") or item.get("harnessIdentifier")
     return None
 
@@ -77,7 +83,7 @@ def ensure_harness(control, name, execution_role_arn, system_prompt_text, model_
         tools=tools,
         memory={"disabled": {}},
         maxIterations=6,
-        maxTokens=2048,
+        maxTokens=4096,
         timeoutSeconds=120,
         tags={"project": "customer-support-chatbot"},
     )
@@ -85,14 +91,14 @@ def ensure_harness(control, name, execution_role_arn, system_prompt_text, model_
         print(f"[harness] reusing existing harness id={harness_id}", flush=True)
         try:
             resp = control.update_harness(
-                harnessIdentifier=harness_id,
+                harnessId=harness_id,
                 executionRoleArn=execution_role_arn,
                 model={"bedrockModelConfig": {"modelId": model_id}},
                 systemPrompt=[{"text": system_prompt_text}],
                 tools=tools,
                 memory={"optionalValue": {"disabled": {}}},
                 maxIterations=6,
-                maxTokens=2048,
+                maxTokens=4096,
                 timeoutSeconds=120,
             )
             harness = resp.get("harness", resp)

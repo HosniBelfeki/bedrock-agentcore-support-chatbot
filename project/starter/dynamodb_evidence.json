@@ -1,0 +1,187 @@
+{
+    "Items": [
+        {
+            "environment": {
+                "S": "Chrome 130 on Windows 11"
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:42:58.691348+00:00"
+            },
+            "description": {
+                "S": "500 error after submitting the payment form"
+            },
+            "stepsToReproduce": {
+                "S": "1. add to cart 2. go to checkout 3. fill card 4. press Pay"
+            },
+            "ticketId": {
+                "S": "f80d15f9-2faf-497a-8f7d-1e2f5be2fcf8"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": ""
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:42:51.980390+00:00"
+            },
+            "description": {
+                "S": "Checkout crashes when clicking pay."
+            },
+            "stepsToReproduce": {
+                "S": "1. Add items to cart. 2. Proceed to checkout. 3. Enter shipping details. 4. Choose payment method. 5. Click 'pay'."
+            },
+            "ticketId": {
+                "S": "417d157e-9d3f-42b2-8f00-0d5227525fd7"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "Chrome 128 on macOS Sonoma on a MacBook Pro M2."
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:36:09.904701+00:00"
+            },
+            "stepsToReproduce": {
+                "S": "1. open a product page 2. select an image 3. press Upload."
+            },
+            "description": {
+                "S": "The upload button on the product page crashes every time it is clicked."
+            },
+            "ticketId": {
+                "S": "c2aefc31-c7e9-4fee-900c-a125eb8f4ea7"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "Chrome 128 on macOS Sonoma on a MacBook Pro M2."
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:37:08.784782+00:00"
+            },
+            "stepsToReproduce": {
+                "S": "1. open a product page\n2. select an image\n3. press Upload."
+            },
+            "description": {
+                "S": "The upload button on the product page crashes every time I click it."
+            },
+            "ticketId": {
+                "S": "b6e35101-aaa2-4aaf-a743-9bdd7582337d"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "Chrome 128 on macOS Sonoma on a MacBook Pro M2."
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:39:36.324310+00:00"
+            },
+            "stepsToReproduce": {
+                "S": "1. open a product page 2. select an image 3. press Upload."
+            },
+            "description": {
+                "S": "The upload button on the product page crashes when clicked."
+            },
+            "ticketId": {
+                "S": "07ad1b9d-8e96-4c12-a719-2e3b90170d6a"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "Chrome 130 on Windows 11."
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:39:41.836634+00:00"
+            },
+            "stepsToReproduce": {
+                "S": "1. add to cart 2. go to checkout 3. fill card 4. press Pay."
+            },
+            "description": {
+                "S": "User receives a 500 error after submitting the payment form."
+            },
+            "ticketId": {
+                "S": "6665e1ae-9d0c-4dc9-bbef-ac9c37526fc3"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "powershell 7"
+            },
+            "createdAt": {
+                "S": "2026-08-23T08:38:26.878490+00:00"
+            },
+            "stepsToReproduce": {
+                "S": "1. run lambda test"
+            },
+            "description": {
+                "S": "smoke test from CLI"
+            },
+            "ticketId": {
+                "S": "06b182eb-6a85-43c1-b063-994e7de32055"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": ""
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:39:40.523046+00:00"
+            },
+            "description": {
+                "S": "Checkout crashes when clicking pay."
+            },
+            "stepsToReproduce": {
+                "S": "1. Add items to cart. 2. Proceed to checkout. 3. Enter shipping details. 4. Choose payment method. 5. Click pay."
+            },
+            "ticketId": {
+                "S": "692f7ec1-05e9-4737-8fcb-4b30dab72f39"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        },
+        {
+            "environment": {
+                "S": "Chrome 128 on macOS Sonoma on a MacBook Pro M2"
+            },
+            "createdAt": {
+                "S": "2026-09-20T17:42:47.447168+00:00"
+            },
+            "description": {
+                "S": "The upload button on the product page crashes every time I click it."
+            },
+            "stepsToReproduce": {
+                "S": "1. open a product page 2. select an image 3. press Upload."
+            },
+            "ticketId": {
+                "S": "696949da-5649-4d06-b195-c26313624cc5"
+            },
+            "status": {
+                "S": "OPEN"
+            }
+        }
+    ],
+    "Count": 9,
+    "ScannedCount": 9,
+    "ConsumedCapacity": null
+}

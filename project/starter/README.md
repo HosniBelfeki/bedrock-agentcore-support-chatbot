@@ -94,19 +94,22 @@ than ~5 minutes.
 | `dynamodb_screenshot_table_view.png` | Full `bug-report-tool-stack-bug-reports` table view, all created tickets. |
 | `eval_results.jsonl` | Per-record `Builtin.Correctness` scores + judge explanations from the completed Bedrock Evaluations job. |
 | `WRITTEN_OBSERVATIONS.md` | Score breakdown and root-cause analysis of the two failing test cases, with the follow-up prompt changes. |
+| `evaluation_job_results.png` | Screenshot of the completed Bedrock Evaluations job results page (Correctness 0.85, avg 0.846 / 13 prompts). |
+| `agentcore_config.json` | Live harness/gateway ARNs and IDs (no credentials). |
+| `output_eval_dataset.jsonl` | BYOI dataset fed to the Bedrock Evaluations job. |
 
-`agentcore_config.json`, `run_all.ps1`, `output_eval_dataset.jsonl`,
-`chat_results.json`, `run_all_inprocess.py`, `venv/`, `__pycache__/` are
-all gitignored.
+`run_all.ps1`, `chat_results.json`, `run_all_inprocess.py`, `venv/`,
+`__pycache__/` are gitignored (local-only driver scripts, not
+submission evidence).
 
 ## Rubric mapping
 
 | Rubric | Lives in |
 |---|---|
-| Classification + routing | `system_prompt.txt` + `chat.py` + 13-test suite |
+| Classification + routing | `system_prompt.txt` + `chat.py` + 13-test suite + `agentcore_config.json` |
 | Bug-report path | `system_prompt.txt` Category A + `create_bug_report.py` + `chat_transcripts.txt` + `dynamodb_screenshot.png` / `dynamodb_screenshot_table_view.png` |
 | FAQ + Other-request paths | `system_prompt.txt` Category B/C + FAQ embedded + `chat_transcripts.txt` |
-| Testing + evaluation | `harness_tests.json` + `output_eval_dataset.jsonl` + `eval_results.jsonl` + `WRITTEN_OBSERVATIONS.md` |
+| Testing + evaluation | `harness_tests.json` + `output_eval_dataset.jsonl` + `eval_results.jsonl` + `evaluation_job_results.png` + `WRITTEN_OBSERVATIONS.md` |
 
 See `EVALUATION_NOTES.md` for the detailed walk-through.
 
